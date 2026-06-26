@@ -187,7 +187,6 @@
                         <div class="w-10 h-10 bg-gold-600 rounded-lg flex items-center justify-center text-white font-serif text-xl font-bold">S</div>
                         <div class="sidebar-text">
                             <h1 class="font-serif text-sm font-bold tracking-wider uppercase text-gold-500">Salazar Law</h1>
-                            <p class="text-[10px] text-slate-400">PRACTICE CRM v1.0</p>
                         </div>
                     </div>
                     <button id="toggle-sidebar-btn" class="text-slate-400 hover:text-white transition" title="Toggle Sidebar">
@@ -295,9 +294,6 @@
                         </span>
                         <span class="font-medium hidden sm:inline">Offline Secure</span>
                     </div>
-
-                    <!-- Keyboard Shortcut Badge -->
-                    <span class="text-[10px] bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-1.5 py-0.5 rounded text-slate-500 hidden lg:inline">Esc to Close Modals</span>
                 </div>
             </header>
 
@@ -475,6 +471,7 @@
                                 <option value="Trial">Trial Stage</option>
                                 <option value="Decision Pending">Decision Pending</option>
                                 <option value="Closed / Archived">Closed / Archived</option>
+                                <option value="Others">Others</option>
                             </select>
                             <select id="case-filter-priority" onchange="renderCases()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-xs rounded border-0 focus:ring-1 focus:ring-gold-500 focus:outline-none">
                                 <option value="all">All Priorities</option>
@@ -1071,6 +1068,7 @@
                             <option value="Trial">Trial Stage</option>
                             <option value="Decision Pending">Decision Pending</option>
                             <option value="Closed / Archived">Closed / Archived</option>
+                            <option value="Others">Others</option>
                         </select>
                     </div>
                     <div>
@@ -1285,51 +1283,9 @@
                         <option value="Under Revision">Under Partner Revision</option>
                     </select>
                 </div>
-                <div class="flex justify-end space-x-2 pt-4 border-t border-slate-100 dark:border-slate-800">
-                    <button type="button" onclick="closeActiveModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded text-xs transition">Cancel</button>
-                    <button type="submit" class="px-4 py-2 bg-gold-600 hover:bg-gold-700 text-white rounded text-xs font-semibold transition">Save Record</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Directory Contact Form -->
-        <div id="directory-modal" class="hidden bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-2xl max-w-md w-[95%] sm:w-full overflow-hidden flex flex-col my-8">
-            <div class="bg-slate-50 dark:bg-slate-800/50 px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
-                <h3 id="directory-modal-title" class="font-serif font-bold text-slate-900 dark:text-white">Save Directory Contact</h3>
-                <button onclick="closeActiveModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <form id="directory-form" onsubmit="saveDirectory(event)" class="p-6 space-y-4">
-                <input type="hidden" id="directory-id-field">
                 <div>
-                    <label class="block text-xs font-semibold text-slate-500 mb-1">Contact Name / Official Entity *</label>
-                    <input type="text" id="directory-name" required placeholder="e.g. Atty. Clarissa Reyes" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded border border-slate-200 dark:border-slate-700 text-xs focus:ring-1 focus:ring-gold-500 focus:outline-none">
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-500 mb-1">Contact Category *</label>
-                        <select id="directory-category" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded border border-slate-200 dark:border-slate-700 text-xs focus:ring-1 focus:ring-gold-500 focus:outline-none">
-                            <option value="Court">Courts & Branches</option>
-                            <option value="Government Agency">Gov Agencies</option>
-                            <option value="Witness">Witnesses</option>
-                            <option value="Opposing Counsel">Opposing Counsels</option>
-                            <option value="Sheriff">Sheriffs</option>
-                            <option value="Notary">Notaries</option>
-                            <option value="Bank">Banks</option>
-                            <option value="Other">Others</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-500 mb-1">Telephone / Mobile *</label>
-                        <input type="text" id="directory-phone" required class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded border border-slate-200 dark:border-slate-700 text-xs focus:ring-1 focus:ring-gold-500 focus:outline-none">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-500 mb-1">Physical Address / Court Branch Room</label>
-                    <input type="text" id="directory-address" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded border border-slate-200 dark:border-slate-700 text-xs focus:ring-1 focus:ring-gold-500 focus:outline-none">
-                </div>
-                <div>
-                    <label class="block text-xs font-semibold text-slate-500 mb-1">Office Email / Remarks</label>
-                    <input type="text" id="directory-remarks" placeholder="Notes, direct line Extensions..." class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded border border-slate-200 dark:border-slate-700 text-xs focus:ring-1 focus:ring-gold-500 focus:outline-none">
+                    <label class="block text-xs font-semibold text-slate-500 mb-1">Document Notes / Remarks</label>
+                    <textarea id="document-notes" rows="2" placeholder="Write down notes or status remarks regarding this document..." class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-100 rounded border border-slate-200 dark:border-slate-700 text-xs focus:ring-1 focus:ring-gold-500 focus:outline-none"></textarea>
                 </div>
                 <div class="flex justify-end space-x-2 pt-4 border-t border-slate-100 dark:border-slate-800">
                     <button type="button" onclick="closeActiveModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 rounded text-xs transition">Cancel</button>
@@ -1967,18 +1923,26 @@
                 type: document.getElementById('document-type').value,
                 date: document.getElementById('document-date').value,
                 caseId: document.getElementById('document-case-assoc').value,
-                status: document.getElementById('document-status').value
+                status: document.getElementById('document-status').value,
+                notes: document.getElementById('document-notes').value
             };
 
             if (isCloudConnected) {
-                await commitWrite('documents', docu.id, docu);
-            } else {
-                if (id) {
-                    const idx = state.documents.findIndex(d => d.id === id);
-                    state.documents[idx] = docu;
-                } else {
-                    state.documents.push(docu);
-                }
+        function editDocument(id) {
+            const docu = state.documents.find(d => d.id === id);
+            if (!docu) return;
+
+            document.getElementById('document-id-field').value = docu.id;
+            document.getElementById('document-title').value = docu.title;
+            document.getElementById('document-type').value = docu.type;
+            document.getElementById('document-date').value = docu.date;
+            document.getElementById('document-case-assoc').value = docu.caseId;
+            document.getElementById('document-status').value = docu.status;
+            document.getElementById('document-notes').value = docu.notes || '';
+
+            document.getElementById('document-modal-title').textContent = "Modify Document Index";
+            openDocumentModal();
+        }
                 saveToLocalStorage();
                 renderDocuments();
             }
@@ -2452,7 +2416,10 @@
                         <td class="p-4">
                             <div class="flex items-center space-x-2">
                                 <i class="fa-solid fa-file-pdf text-rose-500 text-sm"></i>
-                                <span class="font-bold text-slate-900 dark:text-slate-100">${escapeHtml(d.title)}</span>
+                                <div>
+                                    <span class="font-bold text-slate-900 dark:text-slate-100 block">${escapeHtml(d.title)}</span>
+                                    <span class="text-[10px] text-slate-500 block truncate max-w-xs italic">${escapeHtml(d.notes || '')}</span>
+                                </div>
                             </div>
                         </td>
                         <td class="p-4 font-medium"><span class="px-2 py-0.5 border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[10px]">${d.type}</span></td>
