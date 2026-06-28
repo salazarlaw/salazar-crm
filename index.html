@@ -3222,37 +3222,39 @@
         // ==========================================
         // PASTE THE LOGOUT FUNCTION HERE
         // ==========================================
-        async function handleLogout() {
+         async function handleLogout() {
+            // 1. Attempt to sign out of the cloud (Supabase) but ignore errors if offline
             try {
-                // 1. Terminate the session in Supabase backend
-                const { error } = await supabase.auth.signOut();
-                if (error) throw error;
-                
-                // 2. Clear local session variables
-                if (typeof state !== 'undefined') {
-                    state.currentUser = null;
+                if (typeof supabase !== 'undefined') {
+                    await supabase.auth.signOut();
                 }
-                
-                // 3. Reset the UI text to default
-                document.getElementById('logged-user-display').textContent = 'Staff User';
-                const settingsUser = document.getElementById('settings-session-user');
-                if (settingsUser) settingsUser.textContent = 'STAFF USER';
-                
-                // 4. Clear sensitive password input for security
-                const passwordInput = document.getElementById('login-password');
-                if (passwordInput) passwordInput.value = '';
-                
-                // 5. Seamlessly restore the login overlay
-                const overlay = document.getElementById('login-overlay');
+            } catch (err) {
+                console.warn("Offline Mode: Skipped cloud logout, forcing local UI lock.", err);
+            }
+
+            // 2. ALWAYS clear local session variables
+            if (typeof state !== 'undefined') {
+                state.currentUser = null;
+            }
+            
+            // 3. ALWAYS reset the UI text to default
+            const userDisplay = document.getElementById('logged-user-display');
+            if (userDisplay) userDisplay.textContent = 'Staff User';
+            
+            const settingsUser = document.getElementById('settings-session-user');
+            if (settingsUser) settingsUser.textContent = 'STAFF USER';
+            
+            // 4. ALWAYS clear the password input box
+            const passwordInput = document.getElementById('login-password');
+            if (passwordInput) passwordInput.value = '';
+            
+            // 5. ALWAYS restore the login overlay immediately
+            const overlay = document.getElementById('login-overlay');
+            if (overlay) {
                 overlay.style.display = 'flex';
-                
                 requestAnimationFrame(() => {
                     overlay.style.opacity = '1';
                 });
-                
-            } catch (err) {
-                console.error("Supabase Logout Error:", err);
-                alert("Encountered an issue securely logging out. Please check your connection.");
             }
         }
         // ==========================================
