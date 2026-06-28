@@ -1411,14 +1411,69 @@
             }
         }
 
-        function saveToLocalStorage() {
-            try {
-                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
-                updateSyncMetrics();
-            } catch (e) {
-                console.error("Error committing database transaction: ", e);
-            }
-        }
+    
+// ==========================================
+// SUPABASE MASTER SYNC SCRIPT
+// ==========================================
+
+// 1. OVERWRITE YOUR EXISTING SAVE FUNCTION
+async function saveToLocalStorage() {
+    // Keep the local backup for offline use
+    localStorage.setItem('crmState', JSON.stringify(state));
+
+    // Upload the entire state to Supabase instantly
+    const { error } = await supabaseClient
+        .from('cloud_state')
+        .upsert({ 
+            id: 1, 
+            state_data: state 
+        });
+
+    if (error) {
+        console.error("Failed to sync to cloud:", error);
+    } else {
+        console.log("Cloud sync successful.");
+    }
+}
+
+// 2. FETCH FROM CLOUD ON LOGIN
+async function fetchOnlineDatabase() {
+    console.log("Downloading latest data from Supabase...");
+    
+    // Optional: show syncing status on the UI
+    const userDisplay = document.getElementById('logged-user-display');
+    if (userDisplay) userDisplay.textContent = "SYNCING...";
+
+    const { data, error } = await supabaseClient
+        .from('cloud_state')
+        .select('state_data')
+        .eq('id', 1)
+        .single();
+
+    if (error) {
+        console.error("Cloud fetch failed, using local storage:", error);
+        initStorage(); // Fallback to local
+    } else if (data && data.state_data && Object.keys(data.state_data).length > 0) {
+        // Overwrite local state with the cloud state
+        state = data.state_data;
+        
+        // Save it locally just in case they go offline later
+        localStorage.setItem('crmState', JSON.stringify(state));
+        console.log("Cloud data loaded successfully!");
+    }
+
+    // Refresh all the screens with the downloaded data
+    if (userDisplay) userDisplay.textContent = state.currentUser || "USER";
+    renderClients();
+    renderCases();
+    renderTasks();
+    renderBilling();
+    renderDocuments();
+    renderDirectory();
+    updateDashboardCounters();
+    renderReports();
+    renderLogs();
+}
 
         function logAction(actor, action, detail) {
             const currentActor = state.currentUser || actor || 'System';
