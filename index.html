@@ -1458,39 +1458,67 @@
         }
 
         /* CLIENT MODULE */
-        function saveClient(e) {
-            e.preventDefault();
-            const id = document.getElementById('client-id-field').value;
-            const client = {
-                id: id || generateUUID(),
-                name: document.getElementById('client-name').value,
-                contact: document.getElementById('client-contact').value,
-                email: document.getElementById('client-email').value,
-                occupation: document.getElementById('client-occupation').value,
-                company: document.getElementById('client-company').value,
-                address: document.getElementById('client-address').value,
-                caseType: document.getElementById('client-case-type').value,
-                status: document.getElementById('client-status').value,
-                assignedLawyer: document.getElementById('client-assigned-lawyer').value,
-                notes: document.getElementById('client-notes').value
-            };
+       // ==========================================
+        // SUPABASE MASTER SYNC SCRIPT
+        // ==========================================
 
-            if (id) {
-                const idx = state.clients.findIndex(c => c.id === id);
-                state.clients[idx] = client;
-                logAction(null, "Updated Client Profile", `Edited record of ${client.name}`);
-                showToast("Client profile committed.", "success");
+        // 1. OVERWRITE YOUR EXISTING SAVE FUNCTION
+        async function saveToLocalStorage() {
+            // Keep the local backup for offline use
+            localStorage.setItem('crmState', JSON.stringify(state));
+
+            // Upload the entire state to Supabase instantly
+            const { error } = await supabaseClient
+                .from('cloud_state')
+                .upsert({ 
+                    id: 1, 
+                    state_data: state 
+                });
+
+            if (error) {
+                console.error("Failed to sync to cloud:", error);
             } else {
-                state.clients.push(client);
-                logAction(null, "Registered Client", `Registered ${client.name} under ${client.assignedLawyer}`);
-                showToast("New client registered successfully.", "success");
+                console.log("Cloud sync successful.");
+            }
+        }
+
+        // 2. FETCH FROM CLOUD ON LOGIN
+        // This hooks into your window.onload session check!
+        async function fetchOnlineDatabase() {
+            console.log("Downloading latest data from Supabase...");
+            
+            const userDisplay = document.getElementById('logged-user-display');
+            if (userDisplay) userDisplay.textContent = "SYNCING...";
+
+            const { data, error } = await supabaseClient
+                .from('cloud_state')
+                .select('state_data')
+                .eq('id', 1)
+                .single();
+
+            if (error) {
+                console.error("Cloud fetch failed, using local storage:", error);
+                initStorage(); // Fallback to local
+            } else if (data && data.state_data && Object.keys(data.state_data).length > 0) {
+                // Overwrite local state with the cloud state
+                state = data.state_data;
+                
+                // Save it locally just in case they go offline later
+                localStorage.setItem('crmState', JSON.stringify(state));
+                console.log("Cloud data loaded successfully!");
             }
 
-            saveToLocalStorage();
-            closeActiveModal();
+            // Refresh all the screens with the downloaded data
+            if (userDisplay) userDisplay.textContent = state.currentUser || "USER";
             renderClients();
+            renderCases();
+            renderTasks();
+            renderBilling();
+            renderDocuments();
+            renderDirectory();
             updateDashboardCounters();
-            populateAssociationSelectors();
+            renderReports();
+            renderLogs();
         }
 
         function editClient(id) {
@@ -3222,9 +3250,11 @@
         // ==========================================
         // PASTE THE LOGOUT FUNCTION HERE
         // ==========================================
-         async function handleLogout() {
+        async function handleLogout() {
+            console.log("Syncing changes to cloud before logging out...");
             // 1. Attempt to sign out of the cloud (Supabase) but ignore errors if offline
             try {
+                await syncDataBeforeLogout();
                 if (typeof supabase !== 'undefined') {
                     await supabase.auth.signOut();
                 }
@@ -3260,7 +3290,7 @@
         // ==========================================
         // END OF LOGOUT FUNCTION
         // ==========================================
-        
+
     </script>
 </body>
 </html>
