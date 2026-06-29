@@ -122,104 +122,93 @@
     <div class="flex h-screen overflow-hidden">
         
         <!-- SIDEBAR -->
-        <!-- SIDEBAR -->
-<aside id="sidebar" class="w-64 bg-slate-900 text-white flex flex-col justify-between transition-all duration-300 z-30 shrink-0 relative absolute lg:relative -translate-x-full lg:translate-x-0 h-full">
-    <div class="overflow-y-auto">
-        <!-- Brand / Header -->
-        <div class="p-6 border-b border-slate-800 flex items-center justify-between">
-            <div class="flex items-center space-x-3 brand-container">
-                <div class="w-10 h-10 bg-gold-600 rounded-lg flex items-center justify-center text-white font-serif text-xl font-bold">S</div>
-                <div class="sidebar-text">
-                    <h1 class="font-serif text-sm font-bold tracking-wider uppercase text-gold-500">Salazar Law</h1>
-                    <p class="text-[10px] text-slate-400">CRM v1.0</p>
+        <aside id="sidebar" class="w-64 bg-slate-900 text-white flex flex-col justify-between transition-all duration-300 z-30 shrink-0 relative absolute lg:relative -translate-x-full lg:translate-x-0 h-full">
+            <div class="overflow-y-auto">
+                <!-- Brand / Header -->
+                <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center space-x-3 brand-container">
+                        <div class="w-10 h-10 bg-gold-600 rounded-lg flex items-center justify-center text-white font-serif text-xl font-bold">S</div>
+                        <div class="sidebar-text">
+                            <h1 class="font-serif text-sm font-bold tracking-wider uppercase text-gold-500">Salazar Law</h1>
+                            <p class="text-[10px] text-slate-400">CRM v1.0</p>
+                        </div>
+                    </div>
+                    <button id="toggle-sidebar-btn" class="text-slate-400 hover:text-white transition hidden lg:block" title="Toggle Sidebar">
+                        <i class="fa-solid fa-chevron-left text-sm" id="sidebar-toggle-icon"></i>
+                    </button>
+                    <!-- Mobile close sidebar -->
+                    <button onclick="toggleMobileSidebar()" class="text-slate-400 hover:text-white transition lg:hidden text-lg">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
                 </div>
+
+                <!-- Navigation Links -->
+                <nav class="mt-6 px-4 space-y-1 pb-4">
+                    <a href="#" onclick="showPage('dashboard')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition bg-slate-800 text-gold-500" data-page="dashboard">
+                        <i class="fa-solid fa-chart-line w-5 text-center"></i>
+                        <span class="sidebar-text">Dashboard</span>
+                    </a>
+                    <a href="#" onclick="showPage('clients')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="clients">
+                        <i class="fa-solid fa-user-tie w-5 text-center"></i>
+                        <span class="sidebar-text">Client Management</span>
+                    </a>
+                    <a href="#" onclick="showPage('cases')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="cases">
+                        <i class="fa-solid fa-scale-balanced w-5 text-center"></i>
+                        <span class="sidebar-text">Case Management</span>
+                    </a>
+                    <a href="#" onclick="showPage('calendar')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="calendar">
+                        <i class="fa-regular fa-calendar-days w-5 text-center"></i>
+                        <span class="sidebar-text">Calendar Schedule</span>
+                    </a>
+                    <a href="#" onclick="showPage('tasks')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="tasks">
+                        <i class="fa-solid fa-list-check w-5 text-center"></i>
+                        <span class="sidebar-text">Task Manager</span>
+                    </a>
+                    <a href="#" onclick="showPage('billing')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="billing">
+                        <i class="fa-solid fa-wallet w-5 text-center"></i>
+                        <span class="sidebar-text">Billing Ledger</span>
+                    </a>
+                    <a href="#" onclick="showPage('documents')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="documents">
+                        <i class="fa-solid fa-file-invoice-dollar w-5 text-center"></i>
+                        <span class="sidebar-text">Document Tracker</span>
+                    </a>
+                    <a href="#" onclick="showPage('receipts')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="receipts">
+                        <i class="fa-solid fa-file-invoice w-5 text-center"></i>
+                        <span class="sidebar-text">Receipts</span>
+                    </a>
+                    <a href="#" onclick="showPage('directory')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="directory">
+                        <i class="fa-solid fa-address-book w-5 text-center"></i>
+                        <span class="sidebar-text">Contact Directory</span>
+                    </a>
+                    <a href="#" onclick="showPage('reports')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="reports">
+                        <i class="fa-solid fa-chart-pie w-5 text-center"></i>
+                        <span class="sidebar-text">Executive Reports</span>
+                    </a>
+                </nav>
             </div>
-            <button id="toggle-sidebar-btn" class="text-slate-400 hover:text-white transition hidden lg:block" title="Toggle Sidebar">
-                <i class="fa-solid fa-chevron-left text-sm" id="sidebar-toggle-icon"></i>
-            </button>
-            <!-- Mobile close sidebar -->
-            <button onclick="toggleMobileSidebar()" class="text-slate-400 hover:text-white transition lg:hidden text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </div>
 
-        <!-- Navigation Links -->
-        <nav class="mt-6 px-4 space-y-1 pb-4">
-            <a href="#" onclick="showPage('dashboard')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition bg-slate-800 text-gold-500" data-page="dashboard">
-                <i class="fa-solid fa-chart-line w-5 text-center"></i>
-                <span class="sidebar-text">Dashboard</span>
-            </a>
-            <a href="#" onclick="showPage('clients')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="clients">
-                <i class="fa-solid fa-user-tie w-5 text-center"></i>
-                <span class="sidebar-text">Client Management</span>
-            </a>
-            <a href="#" onclick="showPage('cases')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="cases">
-                <i class="fa-solid fa-scale-balanced w-5 text-center"></i>
-                <span class="sidebar-text">Case Management</span>
-            </a>
-            <a href="#" onclick="showPage('calendar')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="calendar">
-                <i class="fa-regular fa-calendar-days w-5 text-center"></i>
-                <span class="sidebar-text">Calendar Schedule</span>
-            </a>
-            <a href="#" onclick="showPage('tasks')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="tasks">
-                <i class="fa-solid fa-list-check w-5 text-center"></i>
-                <span class="sidebar-text">Task Manager</span>
-            </a>
-            <a href="#" onclick="showPage('billing')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="billing">
-                <i class="fa-solid fa-wallet w-5 text-center"></i>
-                <span class="sidebar-text">Billing Ledger</span>
-            </a>
-            <a href="#" onclick="showPage('documents')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="documents">
-                <i class="fa-solid fa-file-invoice-dollar w-5 text-center"></i>
-                <span class="sidebar-text">Document Tracker</span>
-            </a>
-            <a href="#" onclick="showPage('receipts')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="receipts">
-                <i class="fa-solid fa-file-invoice w-5 text-center"></i>
-                <span class="sidebar-text">Receipts</span>
-            </a>
-            <a href="#" onclick="showPage('directory')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="directory">
-                <i class="fa-solid fa-address-book w-5 text-center"></i>
-                <span class="sidebar-text">Contact Directory</span>
-            </a>
-            <a href="#" onclick="showPage('reports')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="reports">
-                <i class="fa-solid fa-chart-pie w-5 text-center"></i>
-                <span class="sidebar-text">Executive Reports</span>
-            </a>
-        </nav>
-    </div>
-
-    <!-- Footer / Settings Profile -->
-    <div class="p-4 border-t border-slate-800 bg-slate-900 z-10 shrink-0">
-        <div class="flex items-center justify-between mb-4 sidebar-text">
-            <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 rounded-full bg-gold-500 flex items-center justify-center text-slate-900 font-bold">PS</div>
-                <div class="text-left">
-                    <p id="logged-user-display" class="text-xs font-semibold">Staff User</p>
-                    <p class="text-[9px] text-slate-400">Authenticated</p>
+            <!-- Footer / Settings Profile -->
+            <div class="p-4 border-t border-slate-800 bg-slate-900 z-10 shrink-0">
+                <div class="flex items-center justify-between mb-4 sidebar-text">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-full bg-gold-500 flex items-center justify-center text-slate-900 font-bold">PS</div>
+                        <div class="text-left">
+                            <p id="logged-user-display" class="text-xs font-semibold">Staff User</p>
+                            <p class="text-[9px] text-slate-400">Authenticated</p>
+                        </div>
+                    </div>
+                    <button onclick="showPage('settings')" class="text-slate-400 hover:text-white transition" title="Firm Settings">
+                        <i class="fa-solid fa-gear"></i>
+                    </button>
                 </div>
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleTheme()" class="w-full py-2 px-3 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white rounded-lg text-xs flex items-center justify-center space-x-2 transition">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline"></i>
+                    <span class="sidebar-text">Toggle Theme</span>
+                </button>
             </div>
-            <button onclick="showPage('settings')" class="text-slate-400 hover:text-white transition" title="Firm Settings">
-                <i class="fa-solid fa-gear"></i>
-            </button>
-        </div>
-        
-        <!-- Action Buttons Wrapper -->
-        <div class="space-y-2">
-            <!-- Theme Toggle Button -->
-            <button onclick="toggleTheme()" class="w-full py-2 px-3 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white rounded-lg text-xs flex items-center justify-center space-x-2 transition">
-                <i class="fa-solid fa-moon dark:hidden"></i>
-                <i class="fa-solid fa-sun hidden dark:inline"></i>
-                <span class="sidebar-text">Toggle Theme</span>
-            </button>
-
-            <!-- Secure Logout Button -->
-            <button onclick="handleLogout()" class="w-full py-2 px-3 bg-slate-800 text-slate-300 hover:bg-rose-900/80 hover:text-rose-100 border border-transparent hover:border-rose-800/50 rounded-lg text-xs flex items-center justify-center space-x-2 transition shadow-sm">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span class="sidebar-text">Sign Out</span>
-            </button>
-        </div>
-    </div>
-</aside>
+        </aside>
 
         <!-- MAIN CONTENT AREA -->
         <main class="flex-1 flex flex-col overflow-hidden relative">
@@ -1458,67 +1447,39 @@
         }
 
         /* CLIENT MODULE */
-       // ==========================================
-        // SUPABASE MASTER SYNC SCRIPT
-        // ==========================================
+        function saveClient(e) {
+            e.preventDefault();
+            const id = document.getElementById('client-id-field').value;
+            const client = {
+                id: id || generateUUID(),
+                name: document.getElementById('client-name').value,
+                contact: document.getElementById('client-contact').value,
+                email: document.getElementById('client-email').value,
+                occupation: document.getElementById('client-occupation').value,
+                company: document.getElementById('client-company').value,
+                address: document.getElementById('client-address').value,
+                caseType: document.getElementById('client-case-type').value,
+                status: document.getElementById('client-status').value,
+                assignedLawyer: document.getElementById('client-assigned-lawyer').value,
+                notes: document.getElementById('client-notes').value
+            };
 
-        // 1. OVERWRITE YOUR EXISTING SAVE FUNCTION
-        async function saveToLocalStorage() {
-            // Keep the local backup for offline use
-            localStorage.setItem('crmState', JSON.stringify(state));
-
-            // Upload the entire state to Supabase instantly
-            const { error } = await supabaseClient
-                .from('cloud_state')
-                .upsert({ 
-                    id: 1, 
-                    state_data: state 
-                });
-
-            if (error) {
-                console.error("Failed to sync to cloud:", error);
+            if (id) {
+                const idx = state.clients.findIndex(c => c.id === id);
+                state.clients[idx] = client;
+                logAction(null, "Updated Client Profile", `Edited record of ${client.name}`);
+                showToast("Client profile committed.", "success");
             } else {
-                console.log("Cloud sync successful.");
-            }
-        }
-
-        // 2. FETCH FROM CLOUD ON LOGIN
-        // This hooks into your window.onload session check!
-        async function fetchOnlineDatabase() {
-            console.log("Downloading latest data from Supabase...");
-            
-            const userDisplay = document.getElementById('logged-user-display');
-            if (userDisplay) userDisplay.textContent = "SYNCING...";
-
-            const { data, error } = await supabaseClient
-                .from('cloud_state')
-                .select('state_data')
-                .eq('id', 1)
-                .single();
-
-            if (error) {
-                console.error("Cloud fetch failed, using local storage:", error);
-                initStorage(); // Fallback to local
-            } else if (data && data.state_data && Object.keys(data.state_data).length > 0) {
-                // Overwrite local state with the cloud state
-                state = data.state_data;
-                
-                // Save it locally just in case they go offline later
-                localStorage.setItem('crmState', JSON.stringify(state));
-                console.log("Cloud data loaded successfully!");
+                state.clients.push(client);
+                logAction(null, "Registered Client", `Registered ${client.name} under ${client.assignedLawyer}`);
+                showToast("New client registered successfully.", "success");
             }
 
-            // Refresh all the screens with the downloaded data
-            if (userDisplay) userDisplay.textContent = state.currentUser || "USER";
+            saveToLocalStorage();
+            closeActiveModal();
             renderClients();
-            renderCases();
-            renderTasks();
-            renderBilling();
-            renderDocuments();
-            renderDirectory();
             updateDashboardCounters();
-            renderReports();
-            renderLogs();
+            populateAssociationSelectors();
         }
 
         function editClient(id) {
@@ -3246,50 +3207,6 @@
             renderLogs();
             populateAssociationSelectors();
         };
-
-        // ==========================================
-        // PASTE THE LOGOUT FUNCTION HERE
-        // ==========================================
-        async function handleLogout() {
-            console.log("Syncing changes to cloud before logging out...");
-            // 1. Attempt to sign out of the cloud (Supabase) but ignore errors if offline
-            try {
-                await syncDataBeforeLogout();
-                if (typeof supabase !== 'undefined') {
-                    await supabase.auth.signOut();
-                }
-            } catch (err) {
-                console.warn("Offline Mode: Skipped cloud logout, forcing local UI lock.", err);
-            }
-
-            // 2. ALWAYS clear local session variables
-            if (typeof state !== 'undefined') {
-                state.currentUser = null;
-            }
-            
-            // 3. ALWAYS reset the UI text to default
-            const userDisplay = document.getElementById('logged-user-display');
-            if (userDisplay) userDisplay.textContent = 'Staff User';
-            
-            const settingsUser = document.getElementById('settings-session-user');
-            if (settingsUser) settingsUser.textContent = 'STAFF USER';
-            
-            // 4. ALWAYS clear the password input box
-            const passwordInput = document.getElementById('login-password');
-            if (passwordInput) passwordInput.value = '';
-            
-            // 5. ALWAYS restore the login overlay immediately
-            const overlay = document.getElementById('login-overlay');
-            if (overlay) {
-                overlay.style.display = 'flex';
-                requestAnimationFrame(() => {
-                    overlay.style.opacity = '1';
-                });
-            }
-        }
-        // ==========================================
-        // END OF LOGOUT FUNCTION
-        // ==========================================
 
     </script>
 </body>
