@@ -122,103 +122,104 @@
     <div class="flex h-screen overflow-hidden">
         
         <!-- SIDEBAR -->
-        <aside id="sidebar" class="w-64 bg-slate-900 text-white flex flex-col justify-between transition-all duration-300 z-30 shrink-0 relative absolute lg:relative -translate-x-full lg:translate-x-0 h-full">
-            <div class="overflow-y-auto">
-                <!-- Brand / Header -->
-                <div class="p-6 border-b border-slate-800 flex items-center justify-between">
-                    <div class="flex items-center space-x-3 brand-container">
-                        <div class="w-10 h-10 bg-gold-600 rounded-lg flex items-center justify-center text-white font-serif text-xl font-bold">S</div>
-                        <div class="sidebar-text">
-                            <h1 class="font-serif text-sm font-bold tracking-wider uppercase text-gold-500">Salazar Law</h1>
-                            <p class="text-[10px] text-slate-400">CRM v1.0</p>
-                        </div>
-                    </div>
-                    <button id="toggle-sidebar-btn" class="text-slate-400 hover:text-white transition hidden lg:block" title="Toggle Sidebar">
-                        <i class="fa-solid fa-chevron-left text-sm" id="sidebar-toggle-icon"></i>
-                    </button>
-                    <!-- Mobile close sidebar -->
-                    <button onclick="toggleMobileSidebar()" class="text-slate-400 hover:text-white transition lg:hidden text-lg">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-
-                <!-- Navigation Links -->
-                <nav class="mt-6 px-4 space-y-1 pb-4">
-                    <a href="#" onclick="showPage('dashboard')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition bg-slate-800 text-gold-500" data-page="dashboard">
-                        <i class="fa-solid fa-chart-line w-5 text-center"></i>
-                        <span class="sidebar-text">Dashboard</span>
-                    </a>
-                    <a href="#" onclick="showPage('clients')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="clients">
-                        <i class="fa-solid fa-user-tie w-5 text-center"></i>
-                        <span class="sidebar-text">Client Management</span>
-                    </a>
-                    <a href="#" onclick="showPage('cases')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="cases">
-                        <i class="fa-solid fa-scale-balanced w-5 text-center"></i>
-                        <span class="sidebar-text">Case Management</span>
-                    </a>
-                    <a href="#" onclick="showPage('calendar')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="calendar">
-                        <i class="fa-regular fa-calendar-days w-5 text-center"></i>
-                        <span class="sidebar-text">Calendar Schedule</span>
-                    </a>
-                    <a href="#" onclick="showPage('tasks')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="tasks">
-                        <i class="fa-solid fa-list-check w-5 text-center"></i>
-                        <span class="sidebar-text">Task Manager</span>
-                    </a>
-                    <a href="#" onclick="showPage('billing')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="billing">
-                        <i class="fa-solid fa-wallet w-5 text-center"></i>
-                        <span class="sidebar-text">Billing Ledger</span>
-                    </a>
-                    <a href="#" onclick="showPage('documents')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="documents">
-                        <i class="fa-solid fa-file-invoice-dollar w-5 text-center"></i>
-                        <span class="sidebar-text">Document Tracker</span>
-                    </a>
-                    <a href="#" onclick="showPage('receipts')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="receipts">
-                        <i class="fa-solid fa-file-invoice w-5 text-center"></i>
-                        <span class="sidebar-text">Receipts</span>
-                    </a>
-                    <a href="#" onclick="showPage('directory')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="directory">
-                        <i class="fa-solid fa-address-book w-5 text-center"></i>
-                        <span class="sidebar-text">Contact Directory</span>
-                    </a>
-                    <a href="#" onclick="showPage('reports')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="reports">
-                        <i class="fa-solid fa-chart-pie w-5 text-center"></i>
-                        <span class="sidebar-text">Executive Reports</span>
-                    </a>
-                </nav>
-            </div>
-
-            <!-- Footer / Settings Profile -->
-            <div class="p-4 border-t border-slate-800 bg-slate-900 z-10 shrink-0">
-                <div class="flex items-center justify-between mb-4 sidebar-text">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-8 h-8 rounded-full bg-gold-500 flex items-center justify-center text-slate-900 font-bold">PS</div>
-                        <div class="text-left">
-                            <p id="logged-user-display" class="text-xs font-semibold">Staff User</p>
-                            <p class="text-[9px] text-slate-400">Authenticated</p>
-                        </div>
-                    </div>
-                    <button onclick="showPage('settings')" class="text-slate-400 hover:text-white transition" title="Firm Settings">
-                        <i class="fa-solid fa-gear"></i>
-                    </button>
-                </div>
-                
-                <!-- Action Buttons Wrapper -->
-                <div class="space-y-2">
-                    <!-- Theme Toggle Button -->
-                    <button onclick="toggleTheme()" class="w-full py-2 px-3 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white rounded-lg text-xs flex items-center justify-center space-x-2 transition">
-                        <i class="fa-solid fa-moon dark:hidden"></i>
-                        <i class="fa-solid fa-sun hidden dark:inline"></i>
-                        <span class="sidebar-text">Toggle Theme</span>
-                    </button>
-
-                    <!-- Secure Logout Button -->
-                    <button onclick="handleLogout()" class="w-full py-2 px-3 bg-slate-800 text-slate-300 hover:bg-rose-900/80 hover:text-rose-100 border border-transparent hover:border-rose-800/50 rounded-lg text-xs flex items-center justify-center space-x-2 transition shadow-sm">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <span class="sidebar-text">Sign Out</span>
-                    </button>
+        <!-- SIDEBAR -->
+<aside id="sidebar" class="w-64 bg-slate-900 text-white flex flex-col justify-between transition-all duration-300 z-30 shrink-0 relative absolute lg:relative -translate-x-full lg:translate-x-0 h-full">
+    <div class="overflow-y-auto">
+        <!-- Brand / Header -->
+        <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+            <div class="flex items-center space-x-3 brand-container">
+                <div class="w-10 h-10 bg-gold-600 rounded-lg flex items-center justify-center text-white font-serif text-xl font-bold">S</div>
+                <div class="sidebar-text">
+                    <h1 class="font-serif text-sm font-bold tracking-wider uppercase text-gold-500">Salazar Law</h1>
+                    <p class="text-[10px] text-slate-400">CRM v1.0</p>
                 </div>
             </div>
-        </aside>
+            <button id="toggle-sidebar-btn" class="text-slate-400 hover:text-white transition hidden lg:block" title="Toggle Sidebar">
+                <i class="fa-solid fa-chevron-left text-sm" id="sidebar-toggle-icon"></i>
+            </button>
+            <!-- Mobile close sidebar -->
+            <button onclick="toggleMobileSidebar()" class="text-slate-400 hover:text-white transition lg:hidden text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="mt-6 px-4 space-y-1 pb-4">
+            <a href="#" onclick="showPage('dashboard')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition bg-slate-800 text-gold-500" data-page="dashboard">
+                <i class="fa-solid fa-chart-line w-5 text-center"></i>
+                <span class="sidebar-text">Dashboard</span>
+            </a>
+            <a href="#" onclick="showPage('clients')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="clients">
+                <i class="fa-solid fa-user-tie w-5 text-center"></i>
+                <span class="sidebar-text">Client Management</span>
+            </a>
+            <a href="#" onclick="showPage('cases')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="cases">
+                <i class="fa-solid fa-scale-balanced w-5 text-center"></i>
+                <span class="sidebar-text">Case Management</span>
+            </a>
+            <a href="#" onclick="showPage('calendar')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="calendar">
+                <i class="fa-regular fa-calendar-days w-5 text-center"></i>
+                <span class="sidebar-text">Calendar Schedule</span>
+            </a>
+            <a href="#" onclick="showPage('tasks')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="tasks">
+                <i class="fa-solid fa-list-check w-5 text-center"></i>
+                <span class="sidebar-text">Task Manager</span>
+            </a>
+            <a href="#" onclick="showPage('billing')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="billing">
+                <i class="fa-solid fa-wallet w-5 text-center"></i>
+                <span class="sidebar-text">Billing Ledger</span>
+            </a>
+            <a href="#" onclick="showPage('documents')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="documents">
+                <i class="fa-solid fa-file-invoice-dollar w-5 text-center"></i>
+                <span class="sidebar-text">Document Tracker</span>
+            </a>
+            <a href="#" onclick="showPage('receipts')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="receipts">
+                <i class="fa-solid fa-file-invoice w-5 text-center"></i>
+                <span class="sidebar-text">Receipts</span>
+            </a>
+            <a href="#" onclick="showPage('directory')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="directory">
+                <i class="fa-solid fa-address-book w-5 text-center"></i>
+                <span class="sidebar-text">Contact Directory</span>
+            </a>
+            <a href="#" onclick="showPage('reports')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition" data-page="reports">
+                <i class="fa-solid fa-chart-pie w-5 text-center"></i>
+                <span class="sidebar-text">Executive Reports</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Footer / Settings Profile -->
+    <div class="p-4 border-t border-slate-800 bg-slate-900 z-10 shrink-0">
+        <div class="flex items-center justify-between mb-4 sidebar-text">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-gold-500 flex items-center justify-center text-slate-900 font-bold">PS</div>
+                <div class="text-left">
+                    <p id="logged-user-display" class="text-xs font-semibold">Staff User</p>
+                    <p class="text-[9px] text-slate-400">Authenticated</p>
+                </div>
+            </div>
+            <button onclick="showPage('settings')" class="text-slate-400 hover:text-white transition" title="Firm Settings">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+        </div>
+        
+        <!-- Action Buttons Wrapper -->
+        <div class="space-y-2">
+            <!-- Theme Toggle Button -->
+            <button onclick="toggleTheme()" class="w-full py-2 px-3 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white rounded-lg text-xs flex items-center justify-center space-x-2 transition">
+                <i class="fa-solid fa-moon dark:hidden"></i>
+                <i class="fa-solid fa-sun hidden dark:inline"></i>
+                <span class="sidebar-text">Toggle Theme</span>
+            </button>
+
+            <!-- Secure Logout Button -->
+            <button onclick="handleLogout()" class="w-full py-2 px-3 bg-slate-800 text-slate-300 hover:bg-rose-900/80 hover:text-rose-100 border border-transparent hover:border-rose-800/50 rounded-lg text-xs flex items-center justify-center space-x-2 transition shadow-sm">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="sidebar-text">Sign Out</span>
+            </button>
+        </div>
+    </div>
+</aside>
 
         <!-- MAIN CONTENT AREA -->
         <main class="flex-1 flex flex-col overflow-hidden relative">
@@ -247,7 +248,7 @@
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                         </span>
-                        <span class="font-medium hidden sm:inline">Connecting...</span>
+                        <span class="font-medium hidden sm:inline">Offline Cache</span>
                     </div>
                 </div>
             </header>
@@ -599,7 +600,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <!-- PAGE VIEW: RECEIPTS -->
                 <div id="page-receipts" class="page-view space-y-6">
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
@@ -769,15 +769,15 @@
                                 <div class="space-y-4 text-[11px] sm:text-xs">
                                     <div class="flex justify-between">
                                         <span class="text-slate-500">Primary Database Engine:</span>
-                                        <span class="font-semibold text-slate-700 dark:text-slate-200">Supabase Cloud + LocalStorage</span>
+                                        <span class="font-semibold text-slate-700 dark:text-slate-200">LocalStorage Web Storage</span>
                                     </div>
                                     <div class="flex justify-between">
-                                        <span class="text-slate-500">Synced Transactions:</span>
+                                        <span class="text-slate-500">Offline Synced Transactions:</span>
                                         <span id="reports-sync-count" class="font-semibold text-emerald-500">0 Items Verified</span>
                                     </div>
                                     <div class="flex justify-between">
                                         <span class="text-slate-500">Data Redundancy Flag:</span>
-                                        <span class="font-semibold text-slate-700 dark:text-slate-200">Cloud Sync & Offline-Ready</span>
+                                        <span class="font-semibold text-slate-700 dark:text-slate-200">Offline-Ready Mirror Built</span>
                                     </div>
                                 </div>
                             </div>
@@ -807,7 +807,7 @@
                                 </div>
                                 <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
                                     <p class="text-[11px] sm:text-xs font-bold text-slate-500">Security Access Level</p>
-                                    <p class="text-[10px] text-slate-400 mt-0.5">Supabase Online Secured Terminal</p>
+                                    <p class="text-[10px] text-slate-400 mt-0.5">Offline Authorized Terminal</p>
                                 </div>
                             </div>
                         </div>
@@ -1046,7 +1046,7 @@
             </form>
         </div>
 
-         <!-- Task Allocation Form -->
+        <!-- Task Allocation Form -->
         <div id="task-modal" class="hidden bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-2xl max-w-md w-full overflow-hidden flex flex-col my-8 mx-2 sm:mx-auto">
             <div class="bg-slate-50 dark:bg-slate-800/50 px-4 sm:px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
                 <h3 id="task-modal-title" class="font-serif font-bold text-slate-900 dark:text-white">Create Task Directive</h3>
